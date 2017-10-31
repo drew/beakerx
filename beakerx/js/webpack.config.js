@@ -113,7 +113,7 @@ module.exports = [
       modules: ['web_modules', 'node_modules'],
       extensions: ['.ts', '.jsx','.js','.less','.css']
     },
-    externals: ['jupyter-js-widgets', '@jupyter-widgets/base', '@jupyter-widgets/controls'],
+    externals: ['@jupyter-widgets/base', '@jupyter-widgets/controls'],
     watchOptions: {
       ignored: /node_modules/
     },
@@ -147,7 +147,34 @@ module.exports = [
       modules: ['web_modules', 'node_modules'],
       extensions: ['.ts', '.jsx','.js','.less','.css']
     },
-    externals: ['jupyter-js-widgets', '@jupyter-widgets/base', '@jupyter-widgets/controls'],
+    externals: ['@jupyter-widgets/base', '@jupyter-widgets/controls'],
+    plugins: plugins
+  },
+  {// Beakerx JupyterLab bundle
+    //
+    // This bundle is generally almost identical to the embeddable bundle
+    //
+    entry: './src/embed.js',
+    output: {
+      filename: 'index.js',
+      path: path.resolve(__dirname, './jupyterlab/lib/'),
+      libraryTarget: 'amd'
+    },
+    module: {
+      rules: rules
+    },
+    resolve: {
+      modules: ['web_modules', 'node_modules'],
+      extensions: ['.ts', '.jsx','.js','.less','.css']
+    },
+    externals: [
+      '@jupyter-widgets/base',
+      '@jupyter-widgets/jupyterlab-manager',
+      '@jupyter-widgets/controls',
+      '@phosphor/widgets',
+      '@phosphor/commands',
+      '@phosphor/messaging'
+    ],
     plugins: plugins
   }
 ];

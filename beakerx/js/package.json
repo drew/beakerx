@@ -1,6 +1,6 @@
 {
   "name": "beakerx",
-  "version": "0.6.3-widgets7b",
+  "version": "0.7.1",
   "description": "BeakerX: Beaker Extensions for Jupyter",
   "author": "Two Sigma Open Source, LLC",
   "main": "src/index.js",
@@ -16,7 +16,7 @@
     "ipywidgets"
   ],
   "scripts": {
-    "build": "webpack --config webpack.prod.js --progress",
+    "build": "npm run build:prod",
     "build:prod": "webpack --config webpack.prod.js --progress",
     "build:dev": "webpack --config webpack.dev.js --progress",
     "prepublish": "npm run build",
