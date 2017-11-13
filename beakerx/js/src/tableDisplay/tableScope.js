@@ -363,10 +363,10 @@ define([
     }
 
     if (all) {
+      self.actualtype = [];
       self.timeStrings = undefined;
       self.tz = undefined;
       self.types = undefined;
-      self.actualtype = undefined;
       self.actualalign = undefined;
       self.data = undefined;
       self.update = undefined;
@@ -1561,14 +1561,16 @@ define([
     var createColumnMenus = require('./tableHeaderMenu/createColumnMenus').default;
     self.columnMenus = createColumnMenus(self);
 
-    self.createTableMenuElements();
     // $rootScope.$emit('beaker.resize'); //TODO check - handle resize?
     self.fixcols.fnRedrawLayout();
     self.updateFixedColumnsSeparator();
 
     setTimeout(function(){
       if (!self.table) { return; }
+
+      self.createTableMenuElements();
       self.applyFilters();
+
       if (self.columnFilter) {
         self.table.columns().every(function(i) {
           var column = this;
@@ -2311,13 +2313,9 @@ define([
       input.value = text;
       input.select();
 
-      if (!Jupyter || !Jupyter.keyboard_manager) {
-        document.execCommand('Copy');
-      } else {
-        Jupyter.keyboard_manager.enabled = false;
-        document.execCommand('Copy');
-        Jupyter.keyboard_manager.enabled = true;
-      }
+      self.toggleJupyterKeyboarManager(false);
+      document.execCommand('Copy');
+      self.toggleJupyterKeyboarManager(true);
 
       input.remove();
     };
@@ -2326,6 +2324,12 @@ define([
     var cellsData = self.exportCellsTo(cells, 'tabs', cells.indexes().length === 1);
 
     executeCopy(cellsData);
+  };
+
+  TableScope.prototype.toggleJupyterKeyboarManager = function(enabled) {
+    try {
+      Jupyter.keyboard_manager.enabled = !!enabled;
+    } catch (e) {}
   };
 
   TableScope.prototype.doCSVExport = function(selectedOnly) {

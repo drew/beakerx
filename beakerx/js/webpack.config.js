@@ -60,6 +60,11 @@ var plugins = [
   })
 ];
 
+var externals = [
+  '@jupyter-widgets/base',
+  '@jupyter-widgets/controls'
+];
+
 module.exports = [
   {// Notebook extension
     //
@@ -113,7 +118,7 @@ module.exports = [
       modules: ['web_modules', 'node_modules'],
       extensions: ['.ts', '.jsx','.js','.less','.css']
     },
-    externals: ['@jupyter-widgets/base', '@jupyter-widgets/controls'],
+    externals: externals,
     watchOptions: {
       ignored: /node_modules/
     },
@@ -147,7 +152,7 @@ module.exports = [
       modules: ['web_modules', 'node_modules'],
       extensions: ['.ts', '.jsx','.js','.less','.css']
     },
-    externals: ['@jupyter-widgets/base', '@jupyter-widgets/controls'],
+    externals: externals,
     plugins: plugins
   },
   {// Beakerx JupyterLab bundle
@@ -167,14 +172,12 @@ module.exports = [
       modules: ['web_modules', 'node_modules'],
       extensions: ['.ts', '.jsx','.js','.less','.css']
     },
-    externals: [
-      '@jupyter-widgets/base',
+    externals: externals.concat([
       '@jupyter-widgets/jupyterlab-manager',
-      '@jupyter-widgets/controls',
       '@phosphor/widgets',
       '@phosphor/commands',
       '@phosphor/messaging'
-    ],
+    ]),
     plugins: plugins
   }
 ];
