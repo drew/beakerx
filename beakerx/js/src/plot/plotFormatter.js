@@ -261,6 +261,7 @@ define([
             }
             return result;
           };
+
           newmodel.vrange = getModelRange(range, newmodel.xAxis.type === "log", newmodel.yAxis.type === "log");
           if(newmodel.yAxisR){
             newmodel.vrangeR = getModelRange(rangeR, newmodel.xAxis.type === "log", newmodel.yAxisR.type === "log");
