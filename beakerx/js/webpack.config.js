@@ -83,6 +83,10 @@ module.exports = [
     module: {
       rules: rules
     },
+    resolve: {
+      modules: ['web_modules', 'node_modules'],
+      extensions: ['.ts', '.jsx','.js','.less','.css']
+    },
     externals: [
       'services/config',
       'services/kernels/comm',

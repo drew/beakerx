@@ -278,8 +278,8 @@ define([
           if (focus.xr != null) { vrange.xr = Math.max(focus.xr, vrange.xr); }
           if (focus.yl != null) { vrange.yl = Math.min(focus.yl, vrange.yl); }
           if (focus.yr != null) { vrange.yr = Math.max(focus.yr, vrange.yr); }
-          if (focus.yl_r != null) { vrangeR.yl = Math.min(focus.yl_r, vrangeR.yl); }
-          if (focus.yr_r != null) { vrangeR.yr = Math.max(focus.yr_r, vrangeR.yr); }
+          if (vrangeR && focus.yl_r != null) { vrangeR.yl = Math.min(focus.yl_r, vrangeR.yl); }
+          if (vrangeR && focus.yr_r != null) { vrangeR.yr = Math.max(focus.yr_r, vrangeR.yr); }
 
           var updateRangeSpan = function(r) {
             if (r) {
