@@ -1,5 +1,5 @@
-declare var BEAKERX_VERSION: string;
+declare var BEAKERX_MODULE_VERSION: string;
 
 interface GlobalEnvironment {
-  BEAKERX_VERSION;
+  BEAKERX_MODULE_VERSION;
 }

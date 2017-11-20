@@ -56,7 +56,7 @@ var plugins = [
     workers: ForkTsCheckerWebpackPlugin.TWO_CPUS_FREE
   }),
   new webpack.DefinePlugin({
-    BEAKERX_VERSION: JSON.stringify(package.version)
+    BEAKERX_MODULE_VERSION: JSON.stringify(package.version)
   })
 ];
 
@@ -64,6 +64,11 @@ var externals = [
   '@jupyter-widgets/base',
   '@jupyter-widgets/controls'
 ];
+
+var resolve = {
+  modules: ['web_modules', 'node_modules'],
+  extensions: ['.ts', '.jsx','.js','.less','.css']
+};
 
 module.exports = [
   {// Notebook extension
@@ -83,10 +88,7 @@ module.exports = [
     module: {
       rules: rules
     },
-    resolve: {
-      modules: ['web_modules', 'node_modules'],
-      extensions: ['.ts', '.jsx','.js','.less','.css']
-    },
+    resolve: resolve,
     externals: [
       'services/config',
       'services/kernels/comm',
@@ -118,10 +120,7 @@ module.exports = [
     module: {
       rules: rules
     },
-    resolve: {
-      modules: ['web_modules', 'node_modules'],
-      extensions: ['.ts', '.jsx','.js','.less','.css']
-    },
+    resolve: resolve,
     externals: externals,
     watchOptions: {
       ignored: /node_modules/
@@ -152,10 +151,7 @@ module.exports = [
     module: {
       rules: rules
     },
-    resolve: {
-      modules: ['web_modules', 'node_modules'],
-      extensions: ['.ts', '.jsx','.js','.less','.css']
-    },
+    resolve: resolve,
     externals: externals,
     plugins: plugins
   },
@@ -172,10 +168,7 @@ module.exports = [
     module: {
       rules: rules
     },
-    resolve: {
-      modules: ['web_modules', 'node_modules'],
-      extensions: ['.ts', '.jsx','.js','.less','.css']
-    },
+    resolve: resolve,
     externals: externals.concat([
       '@jupyter-widgets/jupyterlab-manager',
       '@phosphor/widgets',

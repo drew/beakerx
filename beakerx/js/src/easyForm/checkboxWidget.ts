@@ -25,8 +25,8 @@ class CheckboxModel extends widgets.CheckboxModel {
       _model_name: "CheckboxModel",
       _model_module: 'beakerx',
       _view_module: 'beakerx',
-      _model_module_version: BEAKERX_VERSION,
-      _view_module_version: BEAKERX_VERSION
+      _model_module_version: BEAKERX_MODULE_VERSION,
+      _view_module_version: BEAKERX_MODULE_VERSION
     };
   }
 }
